@@ -30,7 +30,8 @@ namespace OrigenDeDatos
         public static bool login(string usuario, string contra)
         {
             bool bandera = false;
-            MySqlCommand sentencia = new MySqlCommand(String.Format("select * from usuarios where user='"+ usuario + "' and password='" + contra + "'"), Conexion.obtenerConexion());
+            var nuevaContra = Seguridad.Encriptar(contra);
+            MySqlCommand sentencia = new MySqlCommand(String.Format("select * from usuarios where user='"+ usuario + "' and password='" + nuevaContra + "'"), Conexion.obtenerConexion());
             MySqlDataReader lector = sentencia.ExecuteReader();
 
             if (lector.Read())

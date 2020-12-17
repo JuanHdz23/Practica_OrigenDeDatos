@@ -19,7 +19,9 @@ namespace OrigenDeDatos
 
         private void button1_Click(object sender, EventArgs e)
         {
-            var mensaje = Funciones.insertar(textBox1.Text, textBox2.Text);
+            var usuario = textBox1.Text;
+            var contra = Seguridad.Encriptar(textBox2.Text);
+            var mensaje = Funciones.insertar(usuario, contra);
             MessageBox.Show(mensaje);
         }
     }
